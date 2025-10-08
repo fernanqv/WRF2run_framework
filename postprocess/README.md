@@ -28,8 +28,8 @@ All updates have been communicated with **Klaus Görgen**, one of the principal 
 
 ## Access
 
-The code is currently hosted on a **private GitLab repository**.  
-Access is required for future users as the repository is **not public**.
+The code is currently hosted on a **[private GitLab repository](https://icg4geo.icg.kfa-juelich.de/ExternalRepos/pCMORizer/-/tree/josipa?ref_type=heads)**.  
+Access is required for future users, and can be granted only by Klaus Görgen via email.
 
 ## Reporting Issues
 
