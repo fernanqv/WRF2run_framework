@@ -1,6 +1,6 @@
 # pCMORizer
 
-**pCMORizer** is used to postprocess WRF output raw file. It is a Fortran-based tool developed by a group of contributors led by **Sebastian Knist** and **Klaus Görgen (k.goergen@fz-juelich.de)**.  
+**pCMORizer** is used to postprocess WRF output raw file. It is a Fortran-based tool developed by a group of contributors led by **Sebastian Knist** and **Klaus Görgen**.  
 The code extracts and/or calculates (when necessary) variables from raw **WRF** output files (`wrfout`, `wrfpress`, `wrfxtrm`) and produces **CMORized** output aggregated by year, month, or any specified period.
 
 ## Features
@@ -29,7 +29,7 @@ All updates have been communicated with **Klaus Görgen**, one of the principal 
 ## Access
 
 The code is currently hosted on a private [GitLab repository](https://icg4geo.icg.kfa-juelich.de/ExternalRepos/pCMORizer/-/tree/josipa?ref_type=heads).  
-Access is required for future users, and can be granted only by Klaus Görgen via email.
+Access is required for future users, and can be granted only by Klaus Görgen via email k.goergen@fz-juelich.de.
 
 ## Reporting Issues
 
