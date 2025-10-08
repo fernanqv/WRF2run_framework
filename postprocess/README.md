@@ -28,12 +28,12 @@ All updates have been communicated with **Klaus Görgen**, one of the principal 
 
 ## Access
 
-The code is currently hosted on a **[private GitLab repository](https://icg4geo.icg.kfa-juelich.de/ExternalRepos/pCMORizer/-/tree/josipa?ref_type=heads)**.  
+The code is currently hosted on a private [GitLab repository](https://icg4geo.icg.kfa-juelich.de/ExternalRepos/pCMORizer/-/tree/josipa?ref_type=heads).  
 Access is required for future users, and can be granted only by Klaus Görgen via email.
 
 ## Reporting Issues
 
-If you encounter any problems or bugs, please **report the issue in the GitLab repository**.  
+If you encounter any problems or bugs, please report the issue directly in the GitLab repository [issue](https://icg4geo.icg.kfa-juelich.de/ExternalRepos/pCMORizer/-/issues) section.  
 This helps improve the codebase and supports future development.
 
 ---
