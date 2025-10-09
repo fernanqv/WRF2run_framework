@@ -1,0 +1,48 @@
+// Preprocess Workflow
+digraph {
+	rankdir=TB size="10,8"
+	start [label=<<b><font point-size="26"> START </font></b>> align=center fillcolor="#b3e2cd" labelloc=c shape=oval style=filled]
+	wps1 [label=<<b><font point-size="18">1. geogrid.exe and LCZ processing </font></b>> fillcolor="#fdae61" shape=box style=filled]
+	wps1a [label="Define domain in namelist.wps" fillcolor="#fee08b" shape=box style=filled]
+	wps1b [label="Download static data" fillcolor="#fee08b" fontcolor=blue href="https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html" shape=box style=filled]
+	wps1c [label="Download LCZ info from Google Earth" fillcolor="#fee08b" fontcolor=blue href="https://developers.google.com/earth-engine/datasets/catalog/RUB_RUBCLIM_LCZ_global_lcz_map_latest" shape=box style=filled]
+	wps1d [label="Run geogrid.exe" fillcolor="#fee08b" shape=box style=filled]
+	wps1e [label="Install w2w tool from a github repo" fillcolor="#fee08b" fontcolor=blue href="https://github.com/matthiasdemuzere/w2w" shape=box style=filled]
+	wps1f [label="Run w2w for all geo_em files" fillcolor="#fee08b" shape=box style=filled]
+	start -> wps1
+	wps1 -> wps1a
+	wps1a -> wps1b
+	wps1b -> wps1c
+	wps1c -> wps1d
+	wps1d -> wps1e
+	wps1e -> wps1f
+	wps2 [label=<<b><font point-size="18">2. ungrib.exe and GCM processing </font></b>> fillcolor="#fdae61" shape=box style=filled]
+	wps2a [label="If ERA5: download data" fillcolor="#fee08b" shape=box style=filled]
+	wps2b [label="If GCM: download NetCDF & run bctool" fillcolor="#fee08b" shape=box style=filled]
+	wps2c [label="Link/create Vtable in WPS folder" fillcolor="#fee08b" shape=box style=filled]
+	wps2d [label="Run ungrib.exe" fillcolor="#fee08b" shape=box style=filled]
+	wps1f -> wps2
+	wps2 -> wps2a
+	wps2 -> wps2b
+	wps2a -> wps2c
+	wps2b -> wps2c
+	wps2c -> wps2d
+	wps3 [label=<<b><font point-size="18">3. metgrid.exe and lake temperature</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	wps3a [label="Check SST interpolation in METGRID.TBL" fillcolor="#fee08b" shape=box style=filled]
+	wps3b [label="Run metgrid.exe" fillcolor="#fee08b" shape=box style=filled]
+	wps3c [label="Postprocess metgrid (Python lake Tavg, 15-day mean)" fillcolor="#fee08b" shape=box style=filled]
+	wps2d -> wps3
+	wps3 -> wps3a
+	wps3a -> wps3b
+	wps3b -> wps3c
+	wrf1 [label=<<b><font point-size="18">4. real.exe and aerosols</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	wrf1a [label="In WRF/run directory link met_em files" fillcolor="#fee08b" shape=box style=filled]
+	wrf1b [label="Run real.exe" fillcolor="#fee08b" shape=box style=filled]
+	wrf1c [label="Convert aerosol data into WRF format" fillcolor="#fee08b" shape=box style=filled]
+	wps3c -> wrf1
+	wrf1 -> wrf1a
+	wrf1a -> wrf1b
+	wrf1b -> wrf1c
+	end [label=<<b><font point-size="26"> END </font></b>> align=center fillcolor="#b3e2cd" labelloc=c shape=oval style=filled]
+	wrf1c -> end
+}

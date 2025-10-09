@@ -1,0 +1,23 @@
+// WRF Run Workflow
+digraph {
+	rankdir=TB size="10,8"
+	start [label=<<b><font point-size="26"> START </font></b>> align=center fillcolor="#b3e2cd" labelloc=c shape=oval style=filled]
+	wrf1 [label=<<b><font point-size="18">1. Create AOD files</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	wrf1a [label="Tool to create AOD file on GitHub" fillcolor="#fee08b" fontcolor=blue href="https://github.com/AEI-CORDyS/aerosols4wrf" shape=box style=filled]
+	start -> wrf1
+	wrf1 -> wrf1a
+	wrf2 [label=<<b><font point-size="18">2. Set-up files in WRF/run</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	wrf2a [label="Check soft-linked emission file" fillcolor="#fee08b" shape=box style=filled]
+	wrf2b [label="Check parameters in URBPARM_LCZ.TBL" fillcolor="#fee08b" shape=box style=filled]
+	wrf2c [label="Check varlist.txt for variables to be deleted" fillcolor="#fee08b" shape=box style=filled]
+	wrf2d [label="Update dates in namelist.input, AOD_{domain} files, CO2 in MPTABLE" fillcolor="#fee08b" shape=box style=filled]
+	wrf1a -> wrf2
+	wrf2 -> wrf2a
+	wrf2a -> wrf2b
+	wrf2b -> wrf2c
+	wrf2c -> wrf2d
+	wrf3 [label=<<b><font point-size="18">3. Run wrf.exe</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	wrf2d -> wrf3
+	end [label=<<b><font point-size="26"> END </font></b>> align=center fillcolor="#b3e2cd" labelloc=c shape=oval style=filled]
+	wrf3 -> end
+}

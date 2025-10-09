@@ -1,0 +1,35 @@
+// Postprocess Workflow
+digraph {
+	rankdir=TB size="12,10"
+	start [label=<<b><font point-size="26"> START </font></b>> align=center fillcolor="#b3e2cd" labelloc=c shape=oval style=filled]
+	step1 [label=<<b><font point-size="18">1. Repository Access &amp; Setup</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	step1a [label="Request GitLab access (K. Görgen)" fillcolor="#fee08b" shape=box style=filled]
+	step1b [label="Clone josipa branch" fillcolor="#fee08b" fontcolor=blue href="https://icg4geo.icg.kfa-juelich.de/ExternalRepos/pCMORizer/" shape=box style=filled]
+	step1c [label="Install dependencies (NetCDF, CDO, NCO, Python, Fortran)" fillcolor="#fee08b" shape=box style=filled]
+	step1d [label="Compile CMORizer (make)" fillcolor="#fee08b" shape=box style=filled]
+	start -> step1
+	step1 -> step1a
+	step1a -> step1b
+	step1b -> step1c
+	step1c -> step1d
+	step2 [label=<<b><font point-size="18">2. Configure CMORizer</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	step2a [label="Set paths to geo_em files and output directories in runctrl.current.nml_template*" fillcolor="#fee08b" shape=box style=filled]
+	step2b [label="Edit run_pCMORizer_in_quasi_parallel.sh for input files" fillcolor="#fee08b" shape=box style=filled]
+	step1d -> step2
+	step2 -> step2a
+	step2a -> step2b
+	step3 [label=<<b><font point-size="18">3. Run CMORizer</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	step3a [label="Possibility 1: Single variable" fillcolor="#fee08b" shape=box style=filled]
+	step3b [label="Possibility 2: Batch processing variables from CSV" fillcolor="#fee08b" shape=box style=filled]
+	step3c [label="Possibility 3: Daily aggregation with pCMORizer_aggregate_per_day.sh" fillcolor="#fee08b" shape=box style=filled]
+	step2b -> step3
+	step3 -> step3a
+	step3a -> step3b
+	step3b -> step3c
+	step4 [label=<<b><font point-size="18">4. Verification</font></b>> fillcolor="#fdae61" shape=box style=filled]
+	step4a [label="Check for nans and missing values before deleting raw files" fillcolor="#fee08b" shape=box style=filled]
+	step3c -> step4
+	step4 -> step4a
+	end [label=<<b><font point-size="26"> END </font></b>> align=center fillcolor="#b3e2cd" labelloc=c shape=oval style=filled]
+	step4a -> end
+}
