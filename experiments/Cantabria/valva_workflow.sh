@@ -2,11 +2,14 @@
 #SBATCH --job-name=WPS
 #SBATCH --output=wps_%j.out
 #SBATCH --error=wps_%j.error
-#SBATCH --ntasks=32
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks=64
+#SBATCH --ntasks-per-node=64
+#SBATCH --cpus-per-task=1
+#SBATCH --threads-per-core=1
+#SBATCH --distribution=block:block
 #SBATCH --time=12:00:00
-#SBATCH --mem=256G
-##SBATCH --mem-per-cpu=256G
+##SBATCH --mem=256G
+#SBATCH --mem-per-cpu=2G
 #SBATCH --qos=main
 #SBATCH --hint=nomultithread
 #SBATCH --partition=wncompute_meteo
@@ -15,6 +18,10 @@ date
 source $HOME/.bashrc
 
 rm *.log
+
+export ERA5dir="/gpfs/projects/meteo/WORK/josipa/CMIP6toWRF/ERA5_forcing/ERA5/data/EUR/"
+export RUNDIR=$PWD
+source ../../preprocess/loadenv.UCAN-IFCA_WRF.ini 
 
 tar xzvf WPS.tar.gz
 cd WPS
@@ -27,9 +34,6 @@ cp ../namelist.wps_cantabria namelist.wps
 cp ../namelist.input_cantabria namelist.input
 
 
-export ERA5dir="/gpfs/projects/meteo/WORK/josipa/CMIP6toWRF/ERA5_forcing/ERA5/data/EUR/"
-export RUNDIR="/gpfs/users/milovacj/valva/Cantabria"
-source ../../../preprocess/loadenv.UCAN-IFCA_WRF.ini 
 
 #if [ 1 -eq 0 ]; then
 year=2000
